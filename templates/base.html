@@ -1,0 +1,43 @@
+{% load static %}
+{% load profiles %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/static/css/style.css"/>
+    <title>Notes</title>
+</head>
+
+<body>
+<!--navigation bar-->
+<header>
+    <nav>
+        <ul>
+            {#                    <li class="img"><img src="/static/images/note.png" /></li>#}
+            <li class="img"><img src="{% static 'images/note.png' %}" alt="note image"/></li>
+            <li><a href="/">Notes</a></li>
+            {% has_profile as hp %}
+            {% if hp %}
+                <li class="right">
+                    {% block add_note %}
+                        <a href="{% url 'add_note' %}">Add Note</a>
+                    {% endblock add_note %}
+                    <a href="{% url 'profile_details' %}">Profile</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+</header>
+<!--end navigation bar-->
+
+{% block page_content %}
+{% endblock %}
+
+<!--end notes container-->
+
+<footer>
+    <div>Python Web Basics Exam @SoftUni</div>
+</footer>
+</body>
+</html>
